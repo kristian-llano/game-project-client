@@ -5,7 +5,7 @@ const signUp = function (formData) {
   return $.ajax({
     method: 'POST',
     url: config.apiUrl + '/sign-up/',
-    data: formData
+    data: JSON.stringify(formData)
   })
 }
 
@@ -13,7 +13,7 @@ const signIn = function (formData) {
   return $.ajax({
     method: 'POST',
     url: config.apiUrl + '/sign-in/',
-    data: formData
+    data: JSON.stringify(formData)
   })
 }
 
@@ -22,7 +22,7 @@ const signOut = function () {
     method: 'DELETE',
     url: config.apiUrl + '/sign-out/',
     headers: {
-      Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Token ' + store.user.token
     }
   })
 }
@@ -30,10 +30,10 @@ const signOut = function () {
 const changePassword = function (formData) {
   return $.ajax({
     method: 'PATCH',
-    url: config.apiUrl + '/change-password/',
-    data: formData,
+    url: config.apiUrl + '/change-pw/',
+    data: JSON.stringify(formData),
     headers: {
-      Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Token ' + store.user.token
     }
   })
 }

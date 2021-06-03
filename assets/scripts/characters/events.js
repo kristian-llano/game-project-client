@@ -2,43 +2,44 @@ const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('../../../lib/get-form-fields')
 
-const onSignUp = function (event) {
-  event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
-  api.signUp(formData)
-    .then(ui.onSignUpSuccess)
+const onViewCharacter = function () {
+  $('#character-display').show()
+  api.viewCharacter()
+    .then(ui.onViewCharacterSuccess)
     .catch(ui.onError)
 }
 
-const onSignIn = function (event) {
+const onCreateCharacter = function (event) {
   event.preventDefault()
   const form = event.target
   const formData = getFormFields(form)
-  api.signIn(formData)
-    .then(ui.onSignInSuccess)
+  api.createCharacter(formData)
+    .then(ui.onCreateCharacterSuccess)
     .catch(ui.onError)
 }
 
-const onSignOut = function (event) {
+const onDynamicUpdateCharacter = function (event) {
   event.preventDefault()
-  api.signOut()
-    .then(ui.onSignOutSuccess)
-    .catch(ui.onError)
-}
-
-const onChangePassword = function (event) {
-  event.preventDefault()
+  const id = $(event.target).data('id')
   const form = event.target
   const formData = getFormFields(form)
-  api.changePassword(formData)
-    .then(ui.onChangePasswordSuccess)
+  api.updateCharacter(id, formData)
+    .then(ui.onUpdateCharacterSuccess)
+    .catch(ui.onError)
+}
+
+const onDynamicDestroyCharacter = function (event) {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  api.destroyCharacter(id)
+    .then(onViewCharacter)
+    .then(ui.onDestroyCharacterSuccess)
     .catch(ui.onError)
 }
 
 module.exports = {
-  onSignIn,
-  onSignUp,
-  onSignOut,
-  onChangePassword
+  onCreateCharacter,
+  onViewCharacter,
+  onDynamicUpdateCharacter,
+  onDynamicDestroyCharacter
 }

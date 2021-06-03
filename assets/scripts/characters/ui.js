@@ -1,71 +1,80 @@
+const store = require('../store')
 
-const store = require('./../store')
-
-const onSignUpSuccess = function (responseData) {
-  $('#sign-up-message').text('Account successfully created!')
-  $('#sign-up-message').fadeIn('fast')
+const onCreateCharacterSuccess = function (response) {
+  store.user.character = response.character
+  $('.character-create-message').show()
+  $('.character-create-message').text('Character created successfully')
   setTimeout(function () {
-    $('#sign-up-message').fadeOut('slow')
+    $('.character-create-message').fadeOut('slow')
   }, 3000)
+  $('.create-character').toggle()
   $('form').trigger('reset')
 }
 
-const onSignInSuccess = function (responseData) {
-  store.user = responseData.user
-  $('#sign-in-message').text('Successfully logged in!')
-  $('#sign-in-message').fadeIn('fast')
-  setTimeout(function () {
-    $('#sign-in-message').fadeOut('slow')
-  }, 3000)
-  $('form').trigger('reset')
-  $('#sign-in').hide()
-  $('#sign-up').hide()
-  $('.sign-out').show()
-  $('#poem').show()
-  $('.change-password-toggle').show()
+const onViewCharacterSuccess = function (response) {
+  $('#character-view-message').show()
+  const characters = response.characters
+  if (characters === ['']) {
+    $('#character-view-message').text('You don\'t have any characters!')
+  } else {
+    $('#character-view-message').text('Here are your created characters:')
+    let charactersHtml = ''
+    characters.forEach(character => {
+      charactersHtml += `
+      <hr>
+      <h4>Name: ${character.name}</h4>
+      <p>Class: Level ${character.level} ${character.classes}</p>
+      <button class="character-edit">Edit character</button>
+      <button class='characters-destroy-dynamic' data-id=${character.id}>
+        Delete character
+      </button>
+      <form class="characters-update-dynamic" data-id=${character.id}>
+        <input name='character[name]' type='text' placeholder='Name' required>
+        <label for='character[classes]'>Class:</label>
+          <select name='character[classes]' required>
+            <option value="Knight">Knight</option>
+            <option value="Wizard">Wizard</option>
+            <option value="Ranger">Ranger</option>
+          </select>
+        <button>Update character</button>
+      </form>
+      `
+    })
+    $('#character-display').html(charactersHtml)
+    $('.characters-update-dynamic').hide()
+  }
 }
 
-const onSignOutSuccess = function (responseData) {
-  store.user = null
-  $('#sign-out-message').text('Successfully logged out!')
-  $('#sign-out-message').fadeIn('fast')
-  setTimeout(function () {
-    $('#sign-out-message').fadeOut('slow')
+const onDestroyCharacterSuccess = function () {
+  $('#character-delete-message').text('Character deleted successfully')
+  $('#character-delete-message').show()
+  setTimeout(() => {
+    $('#character-delete-message').fadeOut('slow')
   }, 3000)
-  $('form').trigger('reset')
-  $('.sign-out').hide()
-  $('#sign-in').show()
-  $('#sign-up').show()
-  $('.change-password-toggle').hide()
-  $('#change-password').hide()
-  $('#poem').hide()
-  $('#poem-display').hide()
-  $('#poem-view-message').hide()
 }
 
-const onChangePasswordSuccess = function (responseData) {
-  $('#change-password-message').text('Successfully changed password!')
-  $('#change-password-message').fadeIn('fast')
-  setTimeout(function () {
-    $('#change-password-message').fadeOut('slow')
+const onUpdateCharacterSuccess = function () {
+  $('#character-update-message').text('Character updated successfully')
+  $('#character-update-message').show()
+  $('.characters-update-dynamic').toggle()
+  setTimeout(() => {
+    $('#character-update-message').fadeOut('slow')
   }, 3000)
-  $('form').trigger('reset')
-  $('#change-password').hide()
 }
 
 const onError = function (err) {
   console.error(err)
   $('#error-message').text('Something went wrong, please try again.')
-  $('#error-message').fadeIn('fast')
+  $('#error-message').show()
   setTimeout(function () {
     $('#error-message').fadeOut('slow')
   }, 3000)
 }
 
 module.exports = {
-  onSignInSuccess,
-  onSignOutSuccess,
-  onSignUpSuccess,
-  onError,
-  onChangePasswordSuccess
+  onDestroyCharacterSuccess,
+  onCreateCharacterSuccess,
+  onViewCharacterSuccess,
+  onUpdateCharacterSuccess,
+  onError
 }

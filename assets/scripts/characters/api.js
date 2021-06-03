@@ -1,46 +1,53 @@
 const config = require('../config')
-const store = require('./../store')
+const store = require('../store')
 
-const signUp = function (formData) {
+const createCharacter = function (formData) {
+  console.log(formData)
   return $.ajax({
     method: 'POST',
-    url: config.apiUrl + '/sign-up',
-    data: formData
-  })
-}
-
-const signIn = function (formData) {
-  return $.ajax({
-    method: 'POST',
-    url: config.apiUrl + '/sign-in',
-    data: formData
-  })
-}
-
-const signOut = function () {
-  return $.ajax({
-    method: 'DELETE',
-    url: config.apiUrl + '/sign-out',
+    url: config.apiUrl + '/characters/',
     headers: {
-      Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Token ' + store.user.token
+    },
+    data: JSON.stringify(formData)
+  })
+}
+
+const updateCharacter = function (id, formData) {
+  console.log(formData)
+  return $.ajax({
+    method: 'PATCH',
+    url: config.apiUrl + '/characters/' + id + '/',
+    headers: {
+      Authorization: 'Token ' + store.user.token
+    },
+    data: JSON.stringify(formData)
+  })
+}
+
+const viewCharacter = function () {
+  return $.ajax({
+    method: 'GET',
+    url: config.apiUrl + '/characters/',
+    headers: {
+      Authorization: 'Token ' + store.user.token
     }
   })
 }
 
-const changePassword = function (formData) {
+const destroyCharacter = function (id) {
   return $.ajax({
-    method: 'PATCH',
-    url: config.apiUrl + '/change-password',
-    data: formData,
+    method: 'DELETE',
+    url: config.apiUrl + '/characters/' + id,
     headers: {
-      Authorization: 'Bearer ' + store.user.token
+      Authorization: 'Token ' + store.user.token
     }
   })
 }
 
 module.exports = {
-  signIn,
-  signUp,
-  signOut,
-  changePassword
+  createCharacter,
+  viewCharacter,
+  destroyCharacter,
+  updateCharacter
 }

@@ -1,28 +1,26 @@
 'use strict'
 //
-// const poemEvents = require('./poems/events')
-// console.log('poemEvents', poemEvents)
+const characterEvents = require('./characters/events')
+console.log('characterEvents', characterEvents)
 const authEvents = require('./auth/events')
 console.log('authEvents', authEvents)
 
 $(() => {
-  // // POEMS
-  // $('#poem').hide()
-  // $('.create-poem').hide()
-  // $('.poem-button').on('click', function () {
-  //   $('.create-poem').toggle()
-  // })
-  // $('#poem-display').on('click', '.poem-edit', function () {
-  //   $('.poems-update-dynamic').toggle()
-  // })
-  // $('#create-poem').on('submit', poemEvents.onCreatePoem)
-  // $('.view-poem-button').on('click', poemEvents.onViewPoem)
-  // $('#poem-display').on('click', '.poems-destroy-dynamic', poemEvents.onDynamicDestroyPoem)
-  // // $('#poem-display').on('click', '.poem-edit', poemEvents.onPoemEdit)
-  // // $('#poem-display').on('click', '.poem-edit-return', poemEvents.onPoemEditReturn)
-  // $('#poem-display').on('submit', '.poems-update-dynamic', poemEvents.onDynamicUpdatePoem)
+  // CHARACTERS
+  $('#character').hide()
+  $('.create-character').hide()
+  $('.character-button').on('click', function () {
+    $('.create-character').toggle()
+  })
+  $('#character-display').on('click', '.character-edit', function () {
+    $('.characters-update-dynamic').toggle()
+  })
+  $('#create-character').on('submit', characterEvents.onCreateCharacter)
+  $('.view-characters-button').on('click', characterEvents.onViewCharacter)
+  $('#character-display').on('click', '.characters-destroy-dynamic', characterEvents.onDynamicDestroyCharacter)
+  $('#character-display').on('submit', '.characters-update-dynamic', characterEvents.onDynamicUpdateCharacter)
 
-  // USER poem
+  // USER
   $('.change-password-toggle').hide()
   $('#change-password').hide()
   $('.sign-out').hide()

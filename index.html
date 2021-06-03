@@ -15,18 +15,24 @@
 
   <h1>RPG</h1>
 
-  <!-- <section id='poem'>
+  <section id='character'>
 
-    <button class='poem-button'>Create New Character</button>
+    <button class='character-button'>Create New Character</button>
     <button class='view-characters-button'>View Characters</button>
 
-    <form id='create-poem' class='create-poem'>
-      <input name='poem[title]' type='text' placeholder='Title' required>
-      <input name='poem[body]' type='text' placeholder='Body' required>
+    <form id='create-character' class='create-character'>
+      <input name='character[name]' type='text' placeholder='Name' required>
+      <label for='character[classes]'>Class:</label>
+      <select name='character[classes]' required>
+        <option value="Knight">Knight</option>
+        <option value="Wizard">Wizard</option>
+        <option value="Ranger">Ranger</option>
+      </select>
+      <input name='character[level]' type='number' min="1" max="10" placeholder='Level' required>
       <button>Create</button>
     </form>
 
-  </section> -->
+  </section>
 
   <section id='user-auth'>
 
@@ -64,12 +70,12 @@
     <div id='sign-out-message' class='sign-out-message'></div>
     <div id='sign-in-message' class='sign-in-message'></div>
     <div id='change-password-message' class='change-password-message'></div>
-    <!-- <div id='poem-create-message' class='poem-create-message'></div>
-    <div id='poem-delete-message' class='poem-delete-message'></div>
-    <div id='poem-update-message' class='poem-update-message'></div> -->
+    <div id='character-create-message' class='character-create-message'></div>
+    <div id='character-delete-message' class='character-delete-message'></div>
+    <div id='character-update-message' class='character-update-message'></div>
   </section>
-  <!-- <div id='poem-view-message' class='poem-view-message'></div>
-  <div id='poem-display'></div> -->
+  <div id='character-view-message' class='character-view-message'></div>
+  <div id='character-display'></div>
 
   <section class='error'>
     <div id='error-message'></div>

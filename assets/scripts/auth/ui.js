@@ -21,7 +21,7 @@ const onSignInSuccess = function (responseData) {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('.sign-out').show()
-  $('#poem').show()
+  $('#character').show()
   $('.change-password-toggle').show()
 }
 
@@ -38,9 +38,9 @@ const onSignOutSuccess = function (responseData) {
   $('#sign-up').show()
   $('.change-password-toggle').hide()
   $('#change-password').hide()
-  $('#poem').hide()
-  $('#poem-display').hide()
-  $('#poem-view-message').hide()
+  $('#character').hide()
+  $('#character-display').hide()
+  $('#character-view-message').hide()
 }
 
 const onChangePasswordSuccess = function (responseData) {

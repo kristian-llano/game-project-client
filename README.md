@@ -6,10 +6,17 @@ This application allows the user to sign up a new account, log in to the new acc
 https://github.com/kristian-llano/game-project-api
 #### Deployed Sites
 https://kristian-llano.github.io/game-project-client/
+https://game-project-api-llano.herokuapp.com
+
+## Technologies
+- Python
+- Django
+- JavaScript
+- PostgreSQL
 
 ## User Stories
-API = django
-Client = browser
+- API = django
+- Client = browser
 
 #### V1
 - As an unregistered user, I would like to sign up with email and password.

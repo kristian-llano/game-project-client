@@ -3881,7 +3881,7 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 
 var apiUrl = void 0;
 var apiUrls = {
-  production: '<replace-with-heroku-url>',
+  production: 'https://game-project-api-llano.herokuapp.com',
   development: 'http://localhost:8000'
 };
 

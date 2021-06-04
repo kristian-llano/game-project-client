@@ -1,0 +1,40 @@
+@import '~bootstrap/scss/bootstrap';
+
+$error-font-color: $red;
+$success-font-color: $green;
+$seafoam: #c0f4d5;
+$orange: #f7d487;
+$pale-red: #f2787c;
+
+html {min-height: 100%;}
+
+body {
+  background: linear-gradient(to bottom right, $seafoam, $orange, $pale-red);
+  text-align: center;
+
+  h1 {
+    font-size: 85px;
+    margin-top: 2rem;
+  }
+
+  .error {
+    color: $error-font-color;
+  }
+
+  .change-password-toggle {
+    position: absolute;
+    right: 145px;
+    top: 35px;
+  }
+
+  .sign-out {
+    position: absolute;
+    right: 60px;
+    top: 35px;
+  }
+
+  .success-messages {
+    color: $success-font-color;
+  }
+
+}
